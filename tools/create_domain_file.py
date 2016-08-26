@@ -28,7 +28,7 @@ def subdomain_from_repo(repo):
 
 
 def create_domain_string(domain, subdomain, new_treeish):
-    if domain == "presencetest.com":
+    if domain == "presencetest.com" or domain == "pltestinternal.co":
         flavor = "test"
     else:
         flavor = "live"
