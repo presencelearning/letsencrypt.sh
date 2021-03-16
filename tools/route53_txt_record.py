@@ -39,7 +39,13 @@ def create_txt_record(domains):
     for fqd, token in domain_dict.iteritems():
         zone_name = get_zone_name(fqd)
         zone = conn.get_zone(zone_name)
-        status = zone.add_record("TXT", "_acme-challenge." + fqd, '"{token}"'.format(token=token), ttl=1)
+
+        record = zone.find_records("_acme-challenge." + fqd, "TXT")
+        if record:
+            status = zone.update_record(record, '"{token}"'.format(token=token))
+        else:
+            status = zone.add_record("TXT", "_acme-challenge." + fqd, '"{token}"'.format(token=token), ttl=1)
+
         status_collection.append(status)
         print "Add {domain} to Route53".format(domain=fqd)    
 
