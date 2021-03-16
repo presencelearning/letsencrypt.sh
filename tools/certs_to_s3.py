@@ -21,7 +21,7 @@ def copy_file_to_s3(localfile, filename):
 
 def get_filename_flavor(domain):
     domain_parts = domain.split('.')
-    if domain_parts[-2] == 'presencelearning':
+    if domain_parts[-2] == 'presencelearning' or domain_parts[-2] == 'plinternal':
         flavor = 'live'
     elif domain_parts[-2] == 'presencestag': 
         flavor = 'stag'
